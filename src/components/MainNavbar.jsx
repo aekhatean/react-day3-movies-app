@@ -17,7 +17,7 @@ export default function MainNavbar() {
               </Link>
             </Nav.Item>
             <Nav.Item>
-              <Link to="/movies" className="nav-link">
+              <Link to="/movies/1" className="nav-link">
                 Movies
               </Link>
             </Nav.Item>

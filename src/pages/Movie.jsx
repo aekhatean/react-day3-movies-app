@@ -16,7 +16,6 @@ export default function Movie() {
 
   const posterPath = `http://image.tmdb.org/t/p/w500${movieInfo.poster_path}`;
 
-  console.log(movieInfo);
   return (
     <main id="movie-page" className="mt-4">
       <Container>

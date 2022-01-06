@@ -14,7 +14,7 @@ function App() {
         <MainNavbar />
         <Switch>
           <Route exact path="/" component={Home}></Route>
-          <Route exact path="/movies" component={Movies}></Route>
+          <Route exact path="/movies/:pageNum" component={Movies}></Route>
           <Route exact path="/movie/:movieId" component={Movie}></Route>
         </Switch>
       </Router>

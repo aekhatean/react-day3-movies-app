@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { Col, Container, Row } from "react-bootstrap";
+import { useParams } from "react-router-dom";
 import { topMovies } from "../API/movies";
 import { MovieCard, Paginator } from "../components";
 
 export default function Movies() {
-  const [pageNum, setPageNum] = useState(1);
+  let { pageNum } = useParams();
   const [moviesInPage, setMoviesInPage] = useState([]);
 
   useEffect(() => {
     topMovies
-      .get(`&page=${pageNum}`)
+      .get(`sort_by=original_title.desc&page=${pageNum}`)
       .then((res) => res.data.results)
       .then((movies) => setMoviesInPage(movies));
   }, [pageNum]);
@@ -20,7 +21,7 @@ export default function Movies() {
         <h1>Movies catalogue</h1>
         <Row>
           {moviesInPage.map((movie) => (
-            <Col md={3} sm={4} xs={6}>
+            <Col md={3} sm={4} xs={6} key={movie.id}>
               <MovieCard
                 title={movie.original_title}
                 poster={movie.poster_path}
@@ -32,7 +33,7 @@ export default function Movies() {
         </Row>
         <Row className="justify-content-center">
           <Col md={12}>
-            <Paginator />
+            <Paginator page="movies" currIndex={pageNum} api={topMovies} />
           </Col>
         </Row>
       </Container>

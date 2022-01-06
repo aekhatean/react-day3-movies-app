@@ -5,7 +5,6 @@ import { Card, Badge } from "react-bootstrap";
 export default function MovieCard(props) {
   const { title, poster, vote, movieId } = props;
   const posterPath = `http://image.tmdb.org/t/p/w500${poster}`;
-  console.log(props);
   return (
     <>
       <Badge pill bg="warning" text="dark" className="review-badge">
