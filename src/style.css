@@ -5,6 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-height: 100% !important;
+  background-color: rgb(33, 37, 41) !important;
 }
 
 code {
@@ -12,10 +14,21 @@ code {
     monospace;
 }
 
+.App {
+  min-height: 100% !important;
+}
+
 /* MovieCard styling */
 .review-badge {
   position: relative;
   top: 0.6rem;
   left: 45%;
+  z-index: 3;
+}
+
+.star-movie {
+  position: relative;
+  bottom: -90%;
+  left: -23%;
   z-index: 3;
 }

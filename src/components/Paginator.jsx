@@ -11,6 +11,7 @@ export default function Paginator(props) {
   const firstPage = () => {
     return `/${page}/1`;
   };
+
   const prevPage = () => {
     const prevIndex = parseInt(currIndex) - 1;
 
@@ -43,7 +44,7 @@ export default function Paginator(props) {
 
   console.log(firstPage, page, currIndex, api);
   return (
-    <nav aria-label="Page navigation example">
+    <nav aria-label="navigation" className="mt-5">
       <ul className="pagination">
         <li className="page-item">
           <Link className="page-link" to={firstPage}>

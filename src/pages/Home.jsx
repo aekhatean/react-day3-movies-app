@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Col, Container, Row } from "react-bootstrap";
 import { topMovies, genres } from "../API/movies";
 import { MovieCard } from "../components";
@@ -38,10 +39,16 @@ export default function Home() {
       </Container>
       <Container>
         <p className="h1 mb-3">Genres</p>
-        <Row>
+        <Row className="pb-5">
           {genresInPage.map((genre) => (
             <Col md={3} sm={4} xs={6} key={genre.id}>
-              <p>{genre.name}</p>
+              <Link
+                to={`/genre/${genre.name}/1`}
+                className="text-light"
+                style={{ textDecoration: "none" }}
+              >
+                {genre.name}
+              </Link>
             </Col>
           ))}
         </Row>
