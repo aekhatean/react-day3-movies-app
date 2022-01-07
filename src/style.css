@@ -31,4 +31,5 @@ code {
   bottom: -90%;
   left: -23%;
   z-index: 3;
+  cursor: pointer;
 }
