@@ -8,14 +8,11 @@ export default function Genre() {
   const { genreName, pageNum } = useParams();
   const [genreMovies, setGenreMovies] = useState([]);
 
-  console.log(useParams());
   useEffect(() => {
     topMovies
       .get(`&with_genres=${genreName}&page=${pageNum}`)
       .then((res) => setGenreMovies(res.data.results));
   }, [genreName, pageNum]);
-
-  console.log(genreMovies);
 
   return (
     <main id="movies-page" className="mt-4">

@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { MainNavbar } from "./components";
 
 // Pages
-import { Home, Genre, Movies, Movie } from "./pages";
+import { Home, Genre, Movies, Movie, Favs } from "./pages";
 
 function App() {
   return (
@@ -21,6 +21,7 @@ function App() {
           ></Route>
           <Route exact path="/movies/:pageNum" component={Movies}></Route>
           <Route exact path="/movie/:movieId" component={Movie}></Route>
+          <Route exact path="/favorites" component={Favs}></Route>
         </Switch>
       </Router>
     </div>

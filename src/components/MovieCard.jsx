@@ -15,12 +15,11 @@ export default function MovieCard(props) {
   const dispatch = useDispatch();
 
   // Get movie info
-  const { title, poster, vote, movieId } = props;
+  const { title, poster, vote, movieId, starDeclared } = props;
   const posterPath = `http://image.tmdb.org/t/p/w500${poster}`;
 
   // Local state
   const [starState, setStarState] = useState(regularStar);
-  console.log(currStarred);
 
   /**
    * Function used to add a movie id to the redux state if it does not exist, or remove it if it exits
@@ -53,7 +52,7 @@ export default function MovieCard(props) {
         <FontAwesomeIcon icon={solidStar} />
       </Badge>
       <FontAwesomeIcon
-        icon={starState}
+        icon={starDeclared || starState}
         className="star-movie h1 text-warning"
         onClick={() => toggleStarredState(movieId)}
       />

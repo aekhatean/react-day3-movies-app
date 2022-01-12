@@ -31,9 +31,11 @@ export default function MainNavbar() {
           </Nav>
           <Nav>
             <Nav.Item>
-              <FontAwesomeIcon icon={solidStar} />
-              &nbsp;
-              {totalStarred.length} movies
+              <Link to="/favorites" className="nav-link text-warning">
+                <FontAwesomeIcon icon={solidStar} />
+                &nbsp;
+                {totalStarred.length} movies
+              </Link>
             </Nav.Item>
           </Nav>
         </Container>

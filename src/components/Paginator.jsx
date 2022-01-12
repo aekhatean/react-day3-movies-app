@@ -5,7 +5,7 @@ export default function Paginator(props) {
   const { page, currIndex, api } = props;
 
   useEffect(() => {
-    api.get(`&page=${currIndex}`).then((res) => console.log(res.data));
+    api.get(`&page=${currIndex}`);
   }, [page, currIndex, api]);
 
   const firstPage = () => {
@@ -37,12 +37,11 @@ export default function Paginator(props) {
       }
     } catch (err) {
       if (err) {
-        console.log("No previous page");
+        console.log("No Next page");
       }
     }
   };
 
-  console.log(firstPage, page, currIndex, api);
   return (
     <nav aria-label="navigation" className="mt-5">
       <ul className="pagination">
