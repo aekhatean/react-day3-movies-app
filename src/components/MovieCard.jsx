@@ -7,11 +7,11 @@ import { faStar as regularStar } from "@fortawesome/free-regular-svg-icons";
 
 // Redux related
 import { useSelector, useDispatch } from "react-redux";
-import { setStarred } from "../redux/Actions";
+import { setStarred } from "../redux/actions/starActions";
 
 export default function MovieCard(props) {
   // Use redux store
-  const currStarred = useSelector((state) => state.starred);
+  const currStarred = useSelector((state) => state.fav.starred);
   const dispatch = useDispatch();
 
   // Get movie info

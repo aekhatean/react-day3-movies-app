@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 
 export default function Movies() {
   let { pageNum } = useParams();
-  const totalStarred = useSelector((state) => state.starred);
+  const totalStarred = useSelector((state) => state.fav.starred);
   const [moviesInPage, setMoviesInPage] = useState([]);
 
   useEffect(() => {

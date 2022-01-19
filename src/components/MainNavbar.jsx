@@ -7,8 +7,12 @@ import { faStar as solidStar } from "@fortawesome/free-solid-svg-icons";
 // Redux related
 import { useSelector } from "react-redux";
 
+// Utilities
+import ChangeLanguage from "./utilities/ChangeLang";
+
 export default function MainNavbar() {
-  const totalStarred = useSelector((state) => state.starred);
+  const totalStarred = useSelector((state) => state.fav.starred);
+  console.log(totalStarred);
 
   return (
     <>
@@ -30,6 +34,10 @@ export default function MainNavbar() {
             </Nav.Item>
           </Nav>
           <Nav>
+            <Nav.Item>
+              <ChangeLanguage />
+            </Nav.Item>
+
             <Nav.Item>
               <Link to="/favorites" className="nav-link text-warning">
                 <FontAwesomeIcon icon={solidStar} />
