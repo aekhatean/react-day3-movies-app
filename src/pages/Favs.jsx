@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { topMovies } from "../API/movies";
@@ -8,8 +8,12 @@ import { faStar as solidStar } from "@fortawesome/free-solid-svg-icons";
 // Redux related
 import { useSelector } from "react-redux";
 
+// Contexts
+import { langContext } from "../contexts/LanguageContext";
+
 export default function Movies() {
   let { pageNum } = useParams();
+  const { contextLang } = useContext(langContext);
   const [moviesInPage, setMoviesInPage] = useState([]);
   const totalStarred = useSelector((state) => state.fav.starred);
 
@@ -23,7 +27,7 @@ export default function Movies() {
   return (
     <main id="movies-page" className="mt-4">
       <Container>
-        <h1>Movies you liked</h1>
+        <h1>{contextLang === "en" ? "Movies you liked" : "أفلام احببتها"}</h1>
         <Row>
           {moviesInPage
             .filter((movie) => totalStarred.indexOf(movie.id) > -1)

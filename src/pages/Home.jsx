@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Col, Container, Row } from "react-bootstrap";
 import { topMovies, genres } from "../API/movies";
 import { MovieCard } from "../components";
+import { langContext } from "../contexts/LanguageContext";
 
 export default function Home() {
   const [moviesInPage, setMoviesInPage] = useState([]);
   const [genresInPage, setGenresInPage] = useState([]);
+  const { contextLang } = useContext(langContext);
 
   useEffect(() => {
     topMovies
@@ -23,7 +25,9 @@ export default function Home() {
   return (
     <main id="home-page" className="mt-4">
       <Container className="mb-5">
-        <p className="h1 mb-3">Top movies</p>
+        <p className="h1 mb-3">
+          {contextLang === "en" ? "Top movies" : "الأكثر رواجاً"}
+        </p>
         <Row>
           {moviesInPage.map((movie) => (
             <Col md={3} sm={4} xs={6} key={movie.id}>
@@ -38,7 +42,9 @@ export default function Home() {
         </Row>
       </Container>
       <Container>
-        <p className="h1 mb-3">Genres</p>
+        <p className="h1 mb-3">
+          {contextLang === "en" ? "Genres" : "التصنيفات"}
+        </p>
         <Row className="pb-5">
           {genresInPage.map((genre) => (
             <Col md={3} sm={4} xs={6} key={genre.id}>

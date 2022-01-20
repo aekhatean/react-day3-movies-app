@@ -12,7 +12,6 @@ import ChangeLanguage from "./utilities/ChangeLang";
 
 export default function MainNavbar() {
   const totalStarred = useSelector((state) => state.fav.starred);
-  console.log(totalStarred);
 
   return (
     <>

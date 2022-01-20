@@ -1,25 +1,35 @@
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useContext } from "react";
+import { Pagination } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
+
+// Redux related
+import { useDispatch } from "react-redux";
+
+// Contexts
+import { langContext } from "../contexts/LanguageContext";
 
 export default function Paginator(props) {
   const { page, currIndex, api } = props;
+  const { contextLang } = useContext(langContext);
+  const dispatch = useDispatch();
+  const history = useHistory();
 
   useEffect(() => {
-    api.get(`&page=${currIndex}`);
-  }, [page, currIndex, api]);
+    dispatch(api(currIndex, contextLang));
+  }, [dispatch, api, currIndex, contextLang]);
 
   const firstPage = () => {
-    return `/${page}/1`;
+    dispatch(api(1, contextLang));
+    history.push(`/${page}/1`);
   };
 
   const prevPage = () => {
     const prevIndex = parseInt(currIndex) - 1;
 
     try {
-      if (api.get(`&page=${prevIndex}`) && prevIndex > 0) {
-        return `/${page}/${prevIndex}`;
-      } else {
-        return `/${page}/${currIndex}`;
+      if (prevIndex > 0) {
+        dispatch(api(prevIndex, contextLang));
+        history.push(`/${page}/${prevIndex}`);
       }
     } catch (err) {
       if (err) {
@@ -30,38 +40,20 @@ export default function Paginator(props) {
   const nextPage = () => {
     const nextIndex = parseInt(currIndex) + 1;
     try {
-      if (api.get(`&page=${nextIndex}`)) {
-        return `/${page}/${nextIndex}`;
-      } else {
-        return `/${page}/${currIndex}`;
-      }
+      dispatch(api(nextIndex, contextLang));
+      history.push(`/${page}/${nextIndex}`);
     } catch (err) {
       if (err) {
-        console.log("No Next page");
+        console.log("No next page");
       }
     }
   };
 
   return (
-    <nav aria-label="navigation" className="mt-5">
-      <ul className="pagination">
-        <li className="page-item">
-          <Link className="page-link" to={firstPage}>
-            First page
-          </Link>
-        </li>
-
-        <li className="page-item">
-          <Link className="page-link" to={prevPage}>
-            Previous
-          </Link>
-        </li>
-        <li className="page-item">
-          <Link className="page-link" to={nextPage}>
-            Next
-          </Link>
-        </li>
-      </ul>
-    </nav>
+    <Pagination>
+      <Pagination.First onClick={firstPage} />
+      <Pagination.Prev onClick={prevPage} />
+      <Pagination.Next onClick={nextPage} />
+    </Pagination>
   );
 }
